@@ -17,4 +17,8 @@ public class Participante {
     public String getCodigo() {
         return codigo;
     }
+    // Getter do nome
+    public String getNome() {
+        return nome;
+    }
 }
