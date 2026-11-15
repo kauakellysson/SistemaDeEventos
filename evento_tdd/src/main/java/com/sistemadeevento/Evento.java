@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 public final class Evento {
 
     private final String nome;
+    private final String codigo;
 
     /**
      * Cria um evento com os dados informados.
@@ -19,6 +20,7 @@ public final class Evento {
     public Evento(String codigo, String nomeInformado, LocalDateTime data,
                   String local, BigDecimal preco) {
         this.nome = nomeInformado;
+        this.codigo = codigo;
     }
 
     /**
@@ -27,5 +29,13 @@ public final class Evento {
      */
     public String getNome() {
         return nome;
+    }
+
+    /**
+    * Retorna o código do evento.
+    * @return código informado na criação
+    */
+    public String getCodigo() {
+        return codigo;
     }
 }
