@@ -21,4 +21,8 @@ public class Participante {
     public String getNome() {
         return nome;
     }
+    // Getter do e-mail
+    public String getEmail() {
+        return email;
+    }
 }
