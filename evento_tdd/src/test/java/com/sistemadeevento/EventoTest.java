@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import  org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /** Testes da classe Evento. */
 class EventoTest {
@@ -96,5 +97,15 @@ class EventoTest {
         );
 
         assertEquals(0, BigDecimal.ZERO.compareTo(evento.getPreco()));
+    }
+
+    @Test
+    void deveRecusarPrecoNegativoAoCriarEvento() {
+        BigDecimal precoNegativo = new BigDecimal("-0.01");
+        LocalDateTime data = LocalDateTime.parse("2026-12-05T20:00");
+
+        assertThrows(IllegalArgumentException.class, () -> new Evento(
+            "musica-03", "Festival de Jazz", data, "Mineirão", precoNegativo
+        ));
     }
 }
