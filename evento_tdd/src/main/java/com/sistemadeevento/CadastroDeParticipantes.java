@@ -79,12 +79,10 @@ public class CadastroDeParticipantes {
      * @throws IllegalArgumentException se o participante não existir
      */
     public void excluir(String codigo) {
-        if (!participantes.containsKey(codigo)) {
+        if (participantes.remove(codigo) == null) {
             throw new IllegalArgumentException(
                     "Participante não encontrado.");
         }
-
-        participantes.remove(codigo);
     }
 
 }
