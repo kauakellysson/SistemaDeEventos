@@ -161,4 +161,35 @@ class CadastroDeParticipantesTest {
         assertEquals("joao@email.com", mantido.getEmail());
     }
 
+    @Test
+    void deveExcluirParticipanteCadastrado() {
+        CadastroDeParticipantes cadastro = new CadastroDeParticipantes();
+        Participante participante = new Participante(
+                "001", "João", "joao@email.com");
+        cadastro.cadastrar(participante);
+
+        cadastro.excluir("001");
+
+        assertNull(cadastro.buscarPorCodigo("001"));
+        assertTrue(cadastro.listar().isEmpty());
+    }
+
+}
+
+
+   
+
+    @Test
+    void deveExcluirParticipanteCadastrado() {
+        CadastroDeParticipantes cadastro = new CadastroDeParticipantes();
+        Participante participante = new Participante(
+                "001", "João", "joao@email.com");
+        cadastro.cadastrar(participante);
+
+        cadastro.excluir("001");
+
+        assertNull(cadastro.buscarPorCodigo("001"));
+        assertTrue(cadastro.listar().isEmpty());
+    }
+
 }
