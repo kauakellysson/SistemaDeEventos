@@ -125,7 +125,49 @@ void devePermitirAlterarNomeComSobrenome() {
 
     assertEquals("Maria Silva", participante.getNome());
 }   
+    @Test
+void devePreservarAcentosNoNome() {
+    Participante participante = new Participante(
+        "003", "Joao", "joao@email.com"
+    );
 
+    participante.setNome("José Antônio");
+
+    assertEquals("José Antônio", participante.getNome());
+}
+
+@Test
+void naoDevePermitirNomeNulo() {
+    Participante participante = new Participante(
+        "004", "Maria", "maria@email.com"
+    );
+
+    assertThrows(IllegalArgumentException.class, () -> {
+        participante.setNome(null);
+    });
+}
+
+@Test
+void naoDevePermitirNomeVazio() {
+    Participante participante = new Participante(
+        "005", "Maria", "maria@email.com"
+    );
+
+    assertThrows(IllegalArgumentException.class, () -> {
+        participante.setNome("");
+    });
+}
+
+@Test
+void naoDevePermitirNomeComApenasEspacos() {
+    Participante participante = new Participante(
+        "006", "Maria", "maria@email.com"
+    );
+
+    assertThrows(IllegalArgumentException.class, () -> {
+        participante.setNome("   ");
+    });
+}
     // ==========================================
     // TESTES DO setCodigo()
     // ==========================================
