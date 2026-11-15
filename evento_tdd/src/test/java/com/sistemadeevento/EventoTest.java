@@ -76,4 +76,15 @@ class EventoTest {
 
         assertEquals("001", evento.getCodigo());
     }
+
+    @Test
+    void deveRetornarPrecoInformadoAoCriarEvento() {
+        BigDecimal preco = new BigDecimal("120.00");
+        Evento evento = new Evento(
+            "musica-01", "Festival Neon Lights 2026",
+            LocalDateTime.parse("2026-12-05T20:00"), "Mineirão", preco
+        );
+
+        assertEquals(0, preco.compareTo(evento.getPreco()));
+    }
 }
