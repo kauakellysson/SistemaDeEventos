@@ -174,6 +174,22 @@ class CadastroDeParticipantesTest {
         assertTrue(cadastro.listar().isEmpty());
     }
 
+    @Test
+    void devePreservarOutrosParticipantesAoExcluir() {
+        CadastroDeParticipantes cadastro = new CadastroDeParticipantes();
+        Participante primeiro = new Participante(
+                "001", "João", "joao@email.com");
+        Participante segundo = new Participante(
+                "002", "Maria", "maria@email.com");
+
+        cadastro.cadastrar(primeiro);
+        cadastro.cadastrar(segundo);
+
+        cadastro.excluir("001");
+
+        assertNull(cadastro.buscarPorCodigo("001"));
+        assertSame(segundo, cadastro.buscarPorCodigo("002"));
+        assertEquals(1, cadastro.listar().size());
+    }
+
 }
-
-
