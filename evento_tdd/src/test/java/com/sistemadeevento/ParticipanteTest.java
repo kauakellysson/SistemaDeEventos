@@ -1,8 +1,8 @@
 
 package com.sistemadeevento;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 
 class ParticipanteTest {
 
@@ -98,6 +98,31 @@ class ParticipanteTest {
 
         assertEquals("jose.silva+evento@email.com", participante.getEmail());
     }
+    // ==========================================
+// TESTES DO setNome()
+// ==========================================
 
+@Test
+void deveAlterarNomeCorretamente() {
+    Participante participante = new Participante(
+        "001", "João", "joao@email.com"
+    );
+
+    participante.setNome("Carlos");
+
+    assertEquals("Carlos", participante.getNome());
+}
+
+@Test
+void devePermitirAlterarNomeComSobrenome() {
+    Participante participante = new Participante(
+        "002", "Maria", "maria@email.com"
+    );
+
+    participante.setNome("Maria Silva");
+
+    assertEquals("Maria Silva", participante.getNome());
+}
 
 }
+

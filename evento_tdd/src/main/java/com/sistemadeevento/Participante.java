@@ -25,4 +25,5 @@ public class Participante {
     public String getEmail() {
         return email;
     }
+    
 }
