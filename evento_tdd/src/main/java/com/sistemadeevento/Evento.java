@@ -22,10 +22,7 @@ public final class Evento {
                   String local, BigDecimal preco) {
         this.nome = nomeInformado;
         this.codigo = codigo;
-        if (preco.signum() < 0) {
-            throw new IllegalArgumentException("O preço do evento deve ser zero ou positivo.");
-        }
-        this.preco = preco;
+        alterarPreco(preco);
     }
 
     /**
