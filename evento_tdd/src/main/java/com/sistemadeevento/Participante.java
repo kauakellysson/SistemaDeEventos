@@ -27,5 +27,15 @@ public class Participante {
     }
     public void setNome(String nome) {
     this.nome = nome;
-}
+    }
+    
+    // Setter do código
+    public void setCodigo(String codigo) {
+        if (codigo == null || codigo.trim().isEmpty()) {
+            throw new IllegalArgumentException("Código inválido.");
+        }
+
+        this.codigo = codigo;
+    }
+
 }
