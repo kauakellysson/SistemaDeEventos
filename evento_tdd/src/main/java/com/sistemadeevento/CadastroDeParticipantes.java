@@ -19,18 +19,27 @@ public class CadastroDeParticipantes {
     public void cadastrar(Participante participante) {
         if (participante == null) {
             throw new IllegalArgumentException(
-                "O participante não pode ser nulo."
-            );
+                    "O participante não pode ser nulo.");
         }
 
         String codigo = participante.getCodigo();
 
         if (participantes.containsKey(codigo)) {
             throw new IllegalArgumentException(
-                "Já existe um participante com esse código."
-            );
+                    "Já existe um participante com esse código.");
         }
 
         participantes.put(codigo, participante);
     }
+
+    /**
+     * Busca um participante pelo código.
+     *
+     * @param codigo código procurado
+     * @return participante encontrado ou null se não estiver cadastrado
+     */
+    public Participante buscarPorCodigo(String codigo) {
+        return participantes.get(codigo);
+    }
+
 }
