@@ -53,4 +53,23 @@ public class CadastroDeParticipantes {
         return new ArrayList<>(participantes.values());
     }
 
+    /**
+     * Atualiza nome e e-mail de um participante cadastrado.
+     *
+     * @param codigo    código do participante procurado
+     * @param novoNome  novo nome
+     * @param novoEmail novo e-mail
+     * @throws IllegalArgumentException se não existir ou os dados forem inválidos
+     */
+    public void atualizar(String codigo, String novoNome, String novoEmail) {
+        Participante participante = participantes.get(codigo);
+
+        if (participante == null) {
+            throw new IllegalArgumentException(
+                    "Participante não encontrado.");
+        }
+
+        participante.atualizarDados(codigo, novoNome, novoEmail);
+    }
+
 }
