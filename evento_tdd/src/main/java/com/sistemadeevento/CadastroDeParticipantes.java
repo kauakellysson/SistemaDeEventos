@@ -73,11 +73,17 @@ public class CadastroDeParticipantes {
     }
 
     /**
-     * Exclui um participante pelo código.
+     * Exclui um participante cadastrado pelo código.
      *
      * @param codigo código do participante
+     * @throws IllegalArgumentException se o participante não existir
      */
     public void excluir(String codigo) {
+        if (!participantes.containsKey(codigo)) {
+            throw new IllegalArgumentException(
+                    "Participante não encontrado.");
+        }
+
         participantes.remove(codigo);
     }
 
