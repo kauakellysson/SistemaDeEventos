@@ -1,81 +1,140 @@
 
 package com.sistemadeevento;
 
+/**
+ * Representa um participante de um evento.
+ * Armazena código, nome e e-mail do participante.
+ */
 public class Participante {
 
     private String codigo;
     private String nome;
     private String email;
 
-    // Construtor
-    public Participante(String codigo, String nome, String email) {
-        this.codigo = codigo;
-        this.nome = nome;
-        this.email = email;
+    /**
+     * Cria um participante com seus dados iniciais.
+     *
+     * @param novoCodigo código do participante
+     * @param novoNome nome do participante
+     * @param novoEmail e-mail do participante
+     */
+    public Participante(
+            String novoCodigo, String novoNome, String novoEmail) {
+        this.codigo = novoCodigo;
+        this.nome = novoNome;
+        this.email = novoEmail;
     }
 
-    // Getter do código
+    /**
+     * Retorna o código do participante.
+     *
+     * @return código do participante
+     */
     public String getCodigo() {
         return codigo;
     }
 
-    // Getter do nome
+    /**
+     * Retorna o nome do participante.
+     *
+     * @return nome do participante
+     */
     public String getNome() {
         return nome;
     }
 
-    // Getter do e-mail
+    /**
+     * Retorna o e-mail do participante.
+     *
+     * @return e-mail do participante
+     */
     public String getEmail() {
         return email;
     }
 
-    // Setter do nome
-    public void setNome(String nome) {
-        validarNome(nome);
-        this.nome = nome;
+    /**
+     * Altera o nome do participante.
+     *
+     * @param novoNome novo nome do participante
+     */
+    public void setNome(String novoNome) {
+        validarNome(novoNome);
+        this.nome = novoNome;
     }
 
-    // Setter do código
-    public void setCodigo(String codigo) {
-        validarCodigo(codigo);
-        this.codigo = codigo;
+    /**
+     * Altera o código do participante.
+     *
+     * @param novoCodigo novo código do participante
+     */
+    public void setCodigo(String novoCodigo) {
+        validarCodigo(novoCodigo);
+        this.codigo = novoCodigo;
     }
 
-    // Setter do e-mail
-    public void setEmail(String email) {
-        validarEmail(email);
-        this.email = email;
+    /**
+     * Altera o e-mail do participante.
+     *
+     * @param novoEmail novo e-mail do participante
+     */
+    public void setEmail(String novoEmail) {
+        validarEmail(novoEmail);
+        this.email = novoEmail;
     }
 
-    // Atualizar todos os dados do participante
-    public void atualizarDados(String codigo, String nome, String email) {
+    /**
+     * Atualiza todos os dados do participante.
+     *
+     * @param novoCodigo novo código do participante
+     * @param novoNome novo nome do participante
+     * @param novoEmail novo e-mail do participante
+     */
+    public void atualizarDados(
+            String novoCodigo, String novoNome, String novoEmail) {
 
-        validarCodigo(codigo);
-        validarNome(nome);
-        validarEmail(email);
+        validarCodigo(novoCodigo);
+        validarNome(novoNome);
+        validarEmail(novoEmail);
 
-        this.codigo = codigo;
-        this.nome = nome;
-        this.email = email;
+        this.codigo = novoCodigo;
+        this.nome = novoNome;
+        this.email = novoEmail;
     }
 
-    // Validação do código
-    private void validarCodigo(String codigo) {
-        if (codigo == null || codigo.trim().isEmpty()) {
+    /**
+     * Valida o código informado.
+     *
+     * @param valorCodigo código que será validado
+     * @throws IllegalArgumentException se o código for inválido
+     */
+    private void validarCodigo(String valorCodigo) {
+        if (valorCodigo == null || valorCodigo.trim().isEmpty()) {
             throw new IllegalArgumentException("Código inválido.");
         }
     }
 
-    // Validação do nome
-    private void validarNome(String nome) {
-        if (nome == null || nome.trim().isEmpty()) {
+    /**
+     * Valida o nome informado.
+     *
+     * @param valorNome nome que será validado
+     * @throws IllegalArgumentException se o nome for inválido
+     */
+    private void validarNome(String valorNome) {
+        if (valorNome == null || valorNome.trim().isEmpty()) {
             throw new IllegalArgumentException("Nome inválido.");
         }
     }
 
-    // Validação do e-mail
-    private void validarEmail(String email) {
-        if (email == null || email.trim().isEmpty() || !email.contains("@")) {
+    /**
+     * Valida o e-mail informado.
+     *
+     * @param valorEmail e-mail que será validado
+     * @throws IllegalArgumentException se o e-mail for inválido
+     */
+    private void validarEmail(String valorEmail) {
+        if (valorEmail == null
+                || valorEmail.trim().isEmpty()
+                || !valorEmail.contains("@")) {
             throw new IllegalArgumentException("E-mail inválido.");
         }
     }

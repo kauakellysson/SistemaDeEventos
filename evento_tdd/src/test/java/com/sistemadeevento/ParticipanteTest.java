@@ -1,11 +1,12 @@
-
 package com.sistemadeevento;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-
 import org.junit.jupiter.api.Test;
 
+/**
+ * Testes unitários da classe Participante.
+ */
 class ParticipanteTest {
 
     // ==========================================
@@ -15,7 +16,7 @@ class ParticipanteTest {
     @Test
     void deveRetornarCodigoCorretamente() {
         Participante participante = new Participante(
-            "001", "João", "joao@email.com"
+                "001", "João", "joao@email.com"
         );
 
         assertEquals("001", participante.getCodigo());
@@ -24,7 +25,7 @@ class ParticipanteTest {
     @Test
     void deveRetornarCodigoAlfanumerico() {
         Participante participante = new Participante(
-            "ABC123", "João", "joao@email.com"
+                "ABC123", "João", "joao@email.com"
         );
 
         assertEquals("ABC123", participante.getCodigo());
@@ -33,7 +34,7 @@ class ParticipanteTest {
     @Test
     void devePreservarZerosIniciaisDoCodigo() {
         Participante participante = new Participante(
-            "0001", "João", "joao@email.com"
+                "0001", "João", "joao@email.com"
         );
 
         assertEquals("0001", participante.getCodigo());
@@ -46,7 +47,7 @@ class ParticipanteTest {
     @Test
     void deveRetornarNomeCorretamente() {
         Participante participante = new Participante(
-            "001", "João", "joao@email.com"
+                "001", "João", "joao@email.com"
         );
 
         assertEquals("João", participante.getNome());
@@ -55,19 +56,10 @@ class ParticipanteTest {
     @Test
     void deveRetornarNomeComSobrenome() {
         Participante participante = new Participante(
-            "002", "Maria Silva", "maria@email.com"
+                "002", "Maria Silva", "maria@email.com"
         );
 
         assertEquals("Maria Silva", participante.getNome());
-    }
-
-    @Test
-    void devePreservarAcentosNoNome() {
-        Participante participante = new Participante(
-            "003", "José Antônio", "jose@email.com"
-        );
-
-        assertEquals("José Antônio", participante.getNome());
     }
 
     // ==========================================
@@ -77,7 +69,7 @@ class ParticipanteTest {
     @Test
     void deveRetornarEmailCorretamente() {
         Participante participante = new Participante(
-            "001", "João", "joao@email.com"
+                "001", "João", "joao@email.com"
         );
 
         assertEquals("joao@email.com", participante.getEmail());
@@ -86,88 +78,82 @@ class ParticipanteTest {
     @Test
     void deveRetornarEmailComDominioDiferente() {
         Participante participante = new Participante(
-            "002", "Maria", "maria@gmail.com"
+                "002", "Maria", "maria@gmail.com"
         );
 
         assertEquals("maria@gmail.com", participante.getEmail());
     }
 
+    // ==========================================
+    // TESTES DO setNome()
+    // ==========================================
+
     @Test
-    void devePreservarCaracteresEspeciaisNoEmail() {
+    void deveAlterarNomeCorretamente() {
         Participante participante = new Participante(
-            "003", "José", "jose.silva+evento@email.com"
+                "001", "João", "joao@email.com"
         );
 
-        assertEquals("jose.silva+evento@email.com", participante.getEmail());
+        participante.setNome("Carlos");
+
+        assertEquals("Carlos", participante.getNome());
     }
-    // ==========================================
-// TESTES DO setNome()
-// ==========================================
 
-@Test
-void deveAlterarNomeCorretamente() {
-    Participante participante = new Participante(
-        "001", "João", "joao@email.com"
-    );
-
-    participante.setNome("Carlos");
-
-    assertEquals("Carlos", participante.getNome());
-}
-
-@Test
-void devePermitirAlterarNomeComSobrenome() {
-    Participante participante = new Participante(
-        "002", "Maria", "maria@email.com"
-    );
-
-    participante.setNome("Maria Silva");
-
-    assertEquals("Maria Silva", participante.getNome());
-}   
     @Test
-void devePreservarAcentosNoNome() {
-    Participante participante = new Participante(
-        "003", "Joao", "joao@email.com"
-    );
+    void devePermitirAlterarNomeComSobrenome() {
+        Participante participante = new Participante(
+                "002", "Maria", "maria@email.com"
+        );
 
-    participante.setNome("José Antônio");
+        participante.setNome("Maria Silva");
 
-    assertEquals("José Antônio", participante.getNome());
-}
+        assertEquals("Maria Silva", participante.getNome());
+    }
 
-@Test
-void naoDevePermitirNomeNulo() {
-    Participante participante = new Participante(
-        "004", "Maria", "maria@email.com"
-    );
+    @Test
+    void devePreservarAcentosNoNome() {
+        Participante participante = new Participante(
+                "003", "Joao", "joao@email.com"
+        );
 
-    assertThrows(IllegalArgumentException.class, () -> {
-        participante.setNome(null);
-    });
-}
+        participante.setNome("José Antônio");
 
-@Test
-void naoDevePermitirNomeVazio() {
-    Participante participante = new Participante(
-        "005", "Maria", "maria@email.com"
-    );
+        assertEquals("José Antônio", participante.getNome());
+    }
 
-    assertThrows(IllegalArgumentException.class, () -> {
-        participante.setNome("");
-    });
-}
+    @Test
+    void naoDevePermitirNomeNulo() {
+        Participante participante = new Participante(
+                "004", "Maria", "maria@email.com"
+        );
 
-@Test
-void naoDevePermitirNomeComApenasEspacos() {
-    Participante participante = new Participante(
-        "006", "Maria", "maria@email.com"
-    );
+        assertThrows(IllegalArgumentException.class, () -> {
+            participante.setNome(null);
+        });
+    }
 
-    assertThrows(IllegalArgumentException.class, () -> {
-        participante.setNome("   ");
-    });
-}
+    @Test
+    void naoDevePermitirNomeVazio() {
+        Participante participante = new Participante(
+                "005", "Maria", "maria@email.com"
+        );
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            participante.setNome("");
+        });
+    }
+
+    @Test
+    void naoDevePermitirNomeComApenasEspacos() {
+        Participante participante = new Participante(
+                "006", "Maria", "maria@email.com"
+        );
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            participante.setNome("   ");
+        });
+    }
+
     // ==========================================
     // TESTES DO setCodigo()
     // ==========================================
@@ -175,7 +161,7 @@ void naoDevePermitirNomeComApenasEspacos() {
     @Test
     void deveAlterarCodigoCorretamente() {
         Participante participante = new Participante(
-            "001", "João", "joao@email.com"
+                "001", "João", "joao@email.com"
         );
 
         participante.setCodigo("002");
@@ -186,7 +172,7 @@ void naoDevePermitirNomeComApenasEspacos() {
     @Test
     void devePermitirCodigoAlfanumericoNoSet() {
         Participante participante = new Participante(
-            "001", "João", "joao@email.com"
+                "001", "João", "joao@email.com"
         );
 
         participante.setCodigo("ABC123");
@@ -197,7 +183,7 @@ void naoDevePermitirNomeComApenasEspacos() {
     @Test
     void devePreservarZerosIniciaisNoSetCodigo() {
         Participante participante = new Participante(
-            "001", "João", "joao@email.com"
+                "001", "João", "joao@email.com"
         );
 
         participante.setCodigo("0002");
@@ -208,7 +194,7 @@ void naoDevePermitirNomeComApenasEspacos() {
     @Test
     void naoDevePermitirCodigoNuloNoSet() {
         Participante participante = new Participante(
-            "001", "João", "joao@email.com"
+                "001", "João", "joao@email.com"
         );
 
         assertThrows(IllegalArgumentException.class, () -> {
@@ -219,7 +205,7 @@ void naoDevePermitirNomeComApenasEspacos() {
     @Test
     void naoDevePermitirCodigoVazioNoSet() {
         Participante participante = new Participante(
-            "001", "João", "joao@email.com"
+                "001", "João", "joao@email.com"
         );
 
         assertThrows(IllegalArgumentException.class, () -> {
@@ -230,7 +216,7 @@ void naoDevePermitirNomeComApenasEspacos() {
     @Test
     void naoDevePermitirCodigoComEspacosNoSet() {
         Participante participante = new Participante(
-            "001", "João", "joao@email.com"
+                "001", "João", "joao@email.com"
         );
 
         assertThrows(IllegalArgumentException.class, () -> {
@@ -245,7 +231,7 @@ void naoDevePermitirNomeComApenasEspacos() {
     @Test
     void deveAlterarEmailCorretamente() {
         Participante participante = new Participante(
-            "001", "João", "joao@email.com"
+                "001", "João", "joao@email.com"
         );
 
         participante.setEmail("novo@email.com");
@@ -256,7 +242,7 @@ void naoDevePermitirNomeComApenasEspacos() {
     @Test
     void devePermitirEmailComDominioDiferente() {
         Participante participante = new Participante(
-            "002", "Maria", "maria@email.com"
+                "002", "Maria", "maria@email.com"
         );
 
         participante.setEmail("maria@gmail.com");
@@ -267,18 +253,21 @@ void naoDevePermitirNomeComApenasEspacos() {
     @Test
     void devePreservarCaracteresEspeciaisNoEmail() {
         Participante participante = new Participante(
-            "003", "José", "jose@email.com"
+                "003", "José", "jose@email.com"
         );
 
         participante.setEmail("jose.silva+evento@email.com");
 
-        assertEquals("jose.silva+evento@email.com", participante.getEmail());
+        assertEquals(
+                "jose.silva+evento@email.com",
+                participante.getEmail()
+        );
     }
 
     @Test
     void naoDevePermitirEmailNuloNoSet() {
         Participante participante = new Participante(
-            "004", "Ana", "ana@email.com"
+                "004", "Ana", "ana@email.com"
         );
 
         assertThrows(IllegalArgumentException.class, () -> {
@@ -289,7 +278,7 @@ void naoDevePermitirNomeComApenasEspacos() {
     @Test
     void naoDevePermitirEmailVazioNoSet() {
         Participante participante = new Participante(
-            "005", "Carlos", "carlos@email.com"
+                "005", "Carlos", "carlos@email.com"
         );
 
         assertThrows(IllegalArgumentException.class, () -> {
@@ -300,7 +289,7 @@ void naoDevePermitirNomeComApenasEspacos() {
     @Test
     void naoDevePermitirEmailComEspacosNoSet() {
         Participante participante = new Participante(
-            "006", "Pedro", "pedro@email.com"
+                "006", "Pedro", "pedro@email.com"
         );
 
         assertThrows(IllegalArgumentException.class, () -> {
@@ -311,7 +300,7 @@ void naoDevePermitirNomeComApenasEspacos() {
     @Test
     void naoDevePermitirEmailSemArrobaNoSet() {
         Participante participante = new Participante(
-            "007", "Lucas", "lucas@email.com"
+                "007", "Lucas", "lucas@email.com"
         );
 
         assertThrows(IllegalArgumentException.class, () -> {
@@ -319,94 +308,94 @@ void naoDevePermitirNomeComApenasEspacos() {
         });
     }
 
+    // ==========================================
+    // TESTES DO atualizarDados()
+    // ==========================================
 
-// ==========================================
-// TESTES DO atualizarDados()
-// ==========================================
-
-@Test
-void deveAtualizarTodosOsDadosDoParticipante() {
-    Participante participante = new Participante(
-        "001", "João", "joao@email.com"
-    );
-
-    participante.atualizarDados(
-        "002", "Carlos", "carlos@email.com"
-    );
-
-    assertEquals("002", participante.getCodigo());
-    assertEquals("Carlos", participante.getNome());
-    assertEquals("carlos@email.com", participante.getEmail());
-}
-
-@Test
-void devePermitirAtualizarDadosComNomeCompleto() {
-    Participante participante = new Participante(
-        "001", "João", "joao@email.com"
-    );
-
-    participante.atualizarDados(
-        "002", "Carlos Eduardo Silva", "carlos@email.com"
-    );
-
-    assertEquals("Carlos Eduardo Silva", participante.getNome());
-}
-
-@Test
-void naoDeveAtualizarDadosComCodigoNulo() {
-    Participante participante = new Participante(
-        "001", "João", "joao@email.com"
-    );
-
-    assertThrows(IllegalArgumentException.class, () -> {
-        participante.atualizarDados(
-            null, "Carlos", "carlos@email.com"
+    @Test
+    void deveAtualizarTodosOsDadosDoParticipante() {
+        Participante participante = new Participante(
+                "001", "João", "joao@email.com"
         );
-    });
-}
 
-@Test
-void naoDeveAtualizarDadosComNomeNulo() {
-    Participante participante = new Participante(
-        "001", "João", "joao@email.com"
-    );
-
-    assertThrows(IllegalArgumentException.class, () -> {
         participante.atualizarDados(
-            "002", null, "carlos@email.com"
+                "002", "Carlos", "carlos@email.com"
         );
-    });
-}
 
-@Test
-void naoDeveAtualizarDadosComEmailInvalido() {
-    Participante participante = new Participante(
-        "001", "João", "joao@email.com"
-    );
+        assertEquals("002", participante.getCodigo());
+        assertEquals("Carlos", participante.getNome());
+        assertEquals("carlos@email.com", participante.getEmail());
+    }
 
-    assertThrows(IllegalArgumentException.class, () -> {
+    @Test
+    void devePermitirAtualizarDadosComNomeCompleto() {
+        Participante participante = new Participante(
+                "001", "João", "joao@email.com"
+        );
+
         participante.atualizarDados(
-            "002", "Carlos", "emailinvalido"
+                "002", "Carlos Eduardo Silva", "carlos@email.com"
         );
-    });
-}
 
-@Test
-void naoDeveAlterarNenhumDadoQuandoAtualizacaoForInvalida() {
-    Participante participante = new Participante(
-        "001", "João", "joao@email.com"
-    );
-
-    assertThrows(IllegalArgumentException.class, () -> {
-        participante.atualizarDados(
-            "002", "Carlos", "emailinvalido"
+        assertEquals(
+                "Carlos Eduardo Silva",
+                participante.getNome()
         );
-    });
+    }
 
-    assertEquals("001", participante.getCodigo());
-    assertEquals("João", participante.getNome());
-    assertEquals("joao@email.com", participante.getEmail());
+    @Test
+    void naoDeveAtualizarDadosComCodigoNulo() {
+        Participante participante = new Participante(
+                "001", "João", "joao@email.com"
+        );
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            participante.atualizarDados(
+                    null, "Carlos", "carlos@email.com"
+            );
+        });
+    }
+
+    @Test
+    void naoDeveAtualizarDadosComNomeNulo() {
+        Participante participante = new Participante(
+                "001", "João", "joao@email.com"
+        );
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            participante.atualizarDados(
+                    "002", null, "carlos@email.com"
+            );
+        });
+    }
+
+    @Test
+    void naoDeveAtualizarDadosComEmailInvalido() {
+        Participante participante = new Participante(
+                "001", "João", "joao@email.com"
+        );
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            participante.atualizarDados(
+                    "002", "Carlos", "emailinvalido"
+            );
+        });
+    }
+
+    @Test
+    void naoDeveAlterarNenhumDadoQuandoAtualizacaoForInvalida() {
+        Participante participante = new Participante(
+                "001", "João", "joao@email.com"
+        );
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            participante.atualizarDados(
+                    "002", "Carlos", "emailinvalido"
+            );
+        });
+
+        assertEquals("001", participante.getCodigo());
+        assertEquals("João", participante.getNome());
+        assertEquals("joao@email.com", participante.getEmail());
+    }
 }
-
-}
-
