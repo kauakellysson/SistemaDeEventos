@@ -117,4 +117,48 @@ class CadastroDeParticipantesTest {
         assertEquals(1, cadastro.listar().size());
     }
 
+    @Test
+    void deveAtualizarNomeEEmailDoParticipante() {
+        CadastroDeParticipantes cadastro = new CadastroDeParticipantes();
+        Participante participante = new Participante(
+                "001", "João", "joao@email.com");
+        cadastro.cadastrar(participante);
+
+        cadastro.atualizar("001", "João Silva", "silva@email.com");
+
+        Participante atualizado = cadastro.buscarPorCodigo("001");
+        assertSame(participante, atualizado);
+        assertEquals("001", atualizado.getCodigo());
+        assertEquals("João Silva", atualizado.getNome());
+        assertEquals("silva@email.com", atualizado.getEmail());
+    }
+
+    @Test
+    void deveRecusarAtualizacaoDeCodigoNaoCadastrado() {
+        CadastroDeParticipantes cadastro = new CadastroDeParticipantes();
+
+        assertThrows(
+                IllegalArgumentException.class,
+                () -> cadastro.atualizar("999", "Maria", "maria@email.com"));
+
+        assertTrue(cadastro.listar().isEmpty());
+    }
+
+    @Test
+    void devePreservarDadosAoRecusarEmailInvalido() {
+        CadastroDeParticipantes cadastro = new CadastroDeParticipantes();
+        Participante participante = new Participante(
+                "001", "João", "joao@email.com");
+        cadastro.cadastrar(participante);
+
+        assertThrows(
+                IllegalArgumentException.class,
+                () -> cadastro.atualizar("001", "Outro nome", "emailinvalido"));
+
+        Participante mantido = cadastro.buscarPorCodigo("001");
+        assertEquals("001", mantido.getCodigo());
+        assertEquals("João", mantido.getNome());
+        assertEquals("joao@email.com", mantido.getEmail());
+    }
+
 }
