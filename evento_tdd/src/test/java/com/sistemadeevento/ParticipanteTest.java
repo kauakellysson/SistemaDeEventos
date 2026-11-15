@@ -2,6 +2,8 @@
 package com.sistemadeevento;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import org.junit.jupiter.api.Test;
 
 class ParticipanteTest {
@@ -122,7 +124,78 @@ void devePermitirAlterarNomeComSobrenome() {
     participante.setNome("Maria Silva");
 
     assertEquals("Maria Silva", participante.getNome());
-}
+}   
+
+    // ==========================================
+    // TESTES DO setCodigo()
+    // ==========================================
+
+    @Test
+    void deveAlterarCodigoCorretamente() {
+        Participante participante = new Participante(
+            "001", "João", "joao@email.com"
+        );
+
+        participante.setCodigo("002");
+
+        assertEquals("002", participante.getCodigo());
+    }
+
+    @Test
+    void devePermitirCodigoAlfanumericoNoSet() {
+        Participante participante = new Participante(
+            "001", "João", "joao@email.com"
+        );
+
+        participante.setCodigo("ABC123");
+
+        assertEquals("ABC123", participante.getCodigo());
+    }
+
+    @Test
+    void devePreservarZerosIniciaisNoSetCodigo() {
+        Participante participante = new Participante(
+            "001", "João", "joao@email.com"
+        );
+
+        participante.setCodigo("0002");
+
+        assertEquals("0002", participante.getCodigo());
+    }
+
+    @Test
+    void naoDevePermitirCodigoNuloNoSet() {
+        Participante participante = new Participante(
+            "001", "João", "joao@email.com"
+        );
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            participante.setCodigo(null);
+        });
+    }
+
+    @Test
+    void naoDevePermitirCodigoVazioNoSet() {
+        Participante participante = new Participante(
+            "001", "João", "joao@email.com"
+        );
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            participante.setCodigo("");
+        });
+    }
+
+    @Test
+    void naoDevePermitirCodigoComEspacosNoSet() {
+        Participante participante = new Participante(
+            "001", "João", "joao@email.com"
+        );
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            participante.setCodigo("   ");
+        });
+    }
+
 
 }
 
