@@ -36,4 +36,36 @@ class ParticipanteTest {
 
         assertEquals("0001", participante.getCodigo());
     }
+
+    // ==========================================
+    // TESTES DO getNome()
+    // ==========================================
+
+    @Test
+    void deveRetornarNomeCorretamente() {
+        Participante participante = new Participante(
+            "001", "João", "joao@email.com"
+        );
+
+        assertEquals("João", participante.getNome());
+    }
+
+    @Test
+    void deveRetornarNomeComSobrenome() {
+        Participante participante = new Participante(
+            "002", "Maria Silva", "maria@email.com"
+        );
+
+        assertEquals("Maria Silva", participante.getNome());
+    }
+
+    @Test
+    void devePreservarAcentosNoNome() {
+        Participante participante = new Participante(
+            "003", "José Antônio", "jose@email.com"
+        );
+
+        assertEquals("José Antônio", participante.getNome());
+    }
+
 }
