@@ -72,4 +72,13 @@ public class CadastroDeParticipantes {
         participante.atualizarDados(codigo, novoNome, novoEmail);
     }
 
+    /**
+     * Exclui um participante pelo código.
+     *
+     * @param codigo código do participante
+     */
+    public void excluir(String codigo) {
+        participantes.remove(codigo);
+    }
+
 }
