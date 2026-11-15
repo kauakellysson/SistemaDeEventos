@@ -51,4 +51,12 @@ public final class Evento {
     public BigDecimal getPreco() {
         return preco;
     }
+
+    /**
+     * Altera o preço do evento.
+     * @param novoPreco novo preço do evento
+     */
+    public void alterarPreco(BigDecimal novoPreco) {
+        this.preco = novoPreco;
+    }
 }
