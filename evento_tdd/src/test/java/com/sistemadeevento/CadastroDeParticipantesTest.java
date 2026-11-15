@@ -3,6 +3,8 @@ package com.sistemadeevento;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
@@ -47,4 +49,34 @@ class CadastroDeParticipantesTest {
             cadastro.cadastrar(segundo);
         });
     }
+
+    @Test
+    void deveBuscarParticipantePeloCodigo() {
+        CadastroDeParticipantes cadastro = new CadastroDeParticipantes();
+        Participante participante = new Participante(
+                "001", "João", "joao@email.com");
+
+        cadastro.cadastrar(participante);
+
+        assertSame(participante, cadastro.buscarPorCodigo("001"));
+    }
+
+    @Test
+    void deveRetornarNuloAoBuscarEmCadastroVazio() {
+        CadastroDeParticipantes cadastro = new CadastroDeParticipantes();
+
+        assertNull(cadastro.buscarPorCodigo("001"));
+    }
+
+    @Test
+    void deveRetornarNuloParaCodigoNaoCadastrado() {
+        CadastroDeParticipantes cadastro = new CadastroDeParticipantes();
+        Participante participante = new Participante(
+                "001", "João", "joao@email.com");
+
+        cadastro.cadastrar(participante);
+
+        assertNull(cadastro.buscarPorCodigo("999"));
+    }
+
 }
