@@ -1,6 +1,8 @@
 package com.sistemadeevento;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -40,6 +42,15 @@ public class CadastroDeParticipantes {
      */
     public Participante buscarPorCodigo(String codigo) {
         return participantes.get(codigo);
+    }
+
+    /**
+     * Retorna uma cópia da lista de participantes cadastrados.
+     *
+     * @return lista dos participantes, sem ordem garantida
+     */
+    public List<Participante> listar() {
+        return new ArrayList<>(participantes.values());
     }
 
 }
