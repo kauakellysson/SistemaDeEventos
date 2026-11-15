@@ -8,6 +8,7 @@ public final class Evento {
 
     private final String nome;
     private final String codigo;
+    private BigDecimal preco;
 
     /**
      * Cria um evento com os dados informados.
@@ -21,6 +22,7 @@ public final class Evento {
                   String local, BigDecimal preco) {
         this.nome = nomeInformado;
         this.codigo = codigo;
+        this.preco = preco;
     }
 
     /**
@@ -37,5 +39,13 @@ public final class Evento {
     */
     public String getCodigo() {
         return codigo;
+    }
+
+    /**
+     * Retorna o preço do evento.
+     * @return preço do evento
+     */
+    public BigDecimal getPreco() {
+        return preco;
     }
 }
