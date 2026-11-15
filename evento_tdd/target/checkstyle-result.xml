@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="8.45.1">
+<file name="/workspaces/SistemaDeEventos/evento_tdd/src/main/java/com/sistemadeevento/App.java">
+</file>
+<file name="/workspaces/SistemaDeEventos/evento_tdd/src/test/java/com/sistemadeevento/AppTest.java">
+</file>
+</checkstyle>
