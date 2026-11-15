@@ -320,5 +320,93 @@ void naoDevePermitirNomeComApenasEspacos() {
     }
 
 
+// ==========================================
+// TESTES DO atualizarDados()
+// ==========================================
+
+@Test
+void deveAtualizarTodosOsDadosDoParticipante() {
+    Participante participante = new Participante(
+        "001", "João", "joao@email.com"
+    );
+
+    participante.atualizarDados(
+        "002", "Carlos", "carlos@email.com"
+    );
+
+    assertEquals("002", participante.getCodigo());
+    assertEquals("Carlos", participante.getNome());
+    assertEquals("carlos@email.com", participante.getEmail());
+}
+
+@Test
+void devePermitirAtualizarDadosComNomeCompleto() {
+    Participante participante = new Participante(
+        "001", "João", "joao@email.com"
+    );
+
+    participante.atualizarDados(
+        "002", "Carlos Eduardo Silva", "carlos@email.com"
+    );
+
+    assertEquals("Carlos Eduardo Silva", participante.getNome());
+}
+
+@Test
+void naoDeveAtualizarDadosComCodigoNulo() {
+    Participante participante = new Participante(
+        "001", "João", "joao@email.com"
+    );
+
+    assertThrows(IllegalArgumentException.class, () -> {
+        participante.atualizarDados(
+            null, "Carlos", "carlos@email.com"
+        );
+    });
+}
+
+@Test
+void naoDeveAtualizarDadosComNomeNulo() {
+    Participante participante = new Participante(
+        "001", "João", "joao@email.com"
+    );
+
+    assertThrows(IllegalArgumentException.class, () -> {
+        participante.atualizarDados(
+            "002", null, "carlos@email.com"
+        );
+    });
+}
+
+@Test
+void naoDeveAtualizarDadosComEmailInvalido() {
+    Participante participante = new Participante(
+        "001", "João", "joao@email.com"
+    );
+
+    assertThrows(IllegalArgumentException.class, () -> {
+        participante.atualizarDados(
+            "002", "Carlos", "emailinvalido"
+        );
+    });
+}
+
+@Test
+void naoDeveAlterarNenhumDadoQuandoAtualizacaoForInvalida() {
+    Participante participante = new Participante(
+        "001", "João", "joao@email.com"
+    );
+
+    assertThrows(IllegalArgumentException.class, () -> {
+        participante.atualizarDados(
+            "002", "Carlos", "emailinvalido"
+        );
+    });
+
+    assertEquals("001", participante.getCodigo());
+    assertEquals("João", participante.getNome());
+    assertEquals("joao@email.com", participante.getEmail());
+}
+
 }
 
