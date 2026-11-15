@@ -196,6 +196,87 @@ void devePermitirAlterarNomeComSobrenome() {
         });
     }
 
+    // ==========================================
+    // TESTES DO setEmail()
+    // ==========================================
+
+    @Test
+    void deveAlterarEmailCorretamente() {
+        Participante participante = new Participante(
+            "001", "João", "joao@email.com"
+        );
+
+        participante.setEmail("novo@email.com");
+
+        assertEquals("novo@email.com", participante.getEmail());
+    }
+
+    @Test
+    void devePermitirEmailComDominioDiferente() {
+        Participante participante = new Participante(
+            "002", "Maria", "maria@email.com"
+        );
+
+        participante.setEmail("maria@gmail.com");
+
+        assertEquals("maria@gmail.com", participante.getEmail());
+    }
+
+    @Test
+    void devePreservarCaracteresEspeciaisNoEmail() {
+        Participante participante = new Participante(
+            "003", "José", "jose@email.com"
+        );
+
+        participante.setEmail("jose.silva+evento@email.com");
+
+        assertEquals("jose.silva+evento@email.com", participante.getEmail());
+    }
+
+    @Test
+    void naoDevePermitirEmailNuloNoSet() {
+        Participante participante = new Participante(
+            "004", "Ana", "ana@email.com"
+        );
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            participante.setEmail(null);
+        });
+    }
+
+    @Test
+    void naoDevePermitirEmailVazioNoSet() {
+        Participante participante = new Participante(
+            "005", "Carlos", "carlos@email.com"
+        );
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            participante.setEmail("");
+        });
+    }
+
+    @Test
+    void naoDevePermitirEmailComEspacosNoSet() {
+        Participante participante = new Participante(
+            "006", "Pedro", "pedro@email.com"
+        );
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            participante.setEmail("   ");
+        });
+    }
+
+    @Test
+    void naoDevePermitirEmailSemArrobaNoSet() {
+        Participante participante = new Participante(
+            "007", "Lucas", "lucas@email.com"
+        );
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            participante.setEmail("lucasemail.com");
+        });
+    }
+
 
 }
 
