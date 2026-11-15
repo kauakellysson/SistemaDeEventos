@@ -2,6 +2,8 @@
 package com.sistemadeevento;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import org.junit.jupiter.api.Test;
 
 class ParticipanteTest {
@@ -122,6 +124,288 @@ void devePermitirAlterarNomeComSobrenome() {
     participante.setNome("Maria Silva");
 
     assertEquals("Maria Silva", participante.getNome());
+}   
+    @Test
+void devePreservarAcentosNoNome() {
+    Participante participante = new Participante(
+        "003", "Joao", "joao@email.com"
+    );
+
+    participante.setNome("José Antônio");
+
+    assertEquals("José Antônio", participante.getNome());
+}
+
+@Test
+void naoDevePermitirNomeNulo() {
+    Participante participante = new Participante(
+        "004", "Maria", "maria@email.com"
+    );
+
+    assertThrows(IllegalArgumentException.class, () -> {
+        participante.setNome(null);
+    });
+}
+
+@Test
+void naoDevePermitirNomeVazio() {
+    Participante participante = new Participante(
+        "005", "Maria", "maria@email.com"
+    );
+
+    assertThrows(IllegalArgumentException.class, () -> {
+        participante.setNome("");
+    });
+}
+
+@Test
+void naoDevePermitirNomeComApenasEspacos() {
+    Participante participante = new Participante(
+        "006", "Maria", "maria@email.com"
+    );
+
+    assertThrows(IllegalArgumentException.class, () -> {
+        participante.setNome("   ");
+    });
+}
+    // ==========================================
+    // TESTES DO setCodigo()
+    // ==========================================
+
+    @Test
+    void deveAlterarCodigoCorretamente() {
+        Participante participante = new Participante(
+            "001", "João", "joao@email.com"
+        );
+
+        participante.setCodigo("002");
+
+        assertEquals("002", participante.getCodigo());
+    }
+
+    @Test
+    void devePermitirCodigoAlfanumericoNoSet() {
+        Participante participante = new Participante(
+            "001", "João", "joao@email.com"
+        );
+
+        participante.setCodigo("ABC123");
+
+        assertEquals("ABC123", participante.getCodigo());
+    }
+
+    @Test
+    void devePreservarZerosIniciaisNoSetCodigo() {
+        Participante participante = new Participante(
+            "001", "João", "joao@email.com"
+        );
+
+        participante.setCodigo("0002");
+
+        assertEquals("0002", participante.getCodigo());
+    }
+
+    @Test
+    void naoDevePermitirCodigoNuloNoSet() {
+        Participante participante = new Participante(
+            "001", "João", "joao@email.com"
+        );
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            participante.setCodigo(null);
+        });
+    }
+
+    @Test
+    void naoDevePermitirCodigoVazioNoSet() {
+        Participante participante = new Participante(
+            "001", "João", "joao@email.com"
+        );
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            participante.setCodigo("");
+        });
+    }
+
+    @Test
+    void naoDevePermitirCodigoComEspacosNoSet() {
+        Participante participante = new Participante(
+            "001", "João", "joao@email.com"
+        );
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            participante.setCodigo("   ");
+        });
+    }
+
+    // ==========================================
+    // TESTES DO setEmail()
+    // ==========================================
+
+    @Test
+    void deveAlterarEmailCorretamente() {
+        Participante participante = new Participante(
+            "001", "João", "joao@email.com"
+        );
+
+        participante.setEmail("novo@email.com");
+
+        assertEquals("novo@email.com", participante.getEmail());
+    }
+
+    @Test
+    void devePermitirEmailComDominioDiferente() {
+        Participante participante = new Participante(
+            "002", "Maria", "maria@email.com"
+        );
+
+        participante.setEmail("maria@gmail.com");
+
+        assertEquals("maria@gmail.com", participante.getEmail());
+    }
+
+    @Test
+    void devePreservarCaracteresEspeciaisNoEmail() {
+        Participante participante = new Participante(
+            "003", "José", "jose@email.com"
+        );
+
+        participante.setEmail("jose.silva+evento@email.com");
+
+        assertEquals("jose.silva+evento@email.com", participante.getEmail());
+    }
+
+    @Test
+    void naoDevePermitirEmailNuloNoSet() {
+        Participante participante = new Participante(
+            "004", "Ana", "ana@email.com"
+        );
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            participante.setEmail(null);
+        });
+    }
+
+    @Test
+    void naoDevePermitirEmailVazioNoSet() {
+        Participante participante = new Participante(
+            "005", "Carlos", "carlos@email.com"
+        );
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            participante.setEmail("");
+        });
+    }
+
+    @Test
+    void naoDevePermitirEmailComEspacosNoSet() {
+        Participante participante = new Participante(
+            "006", "Pedro", "pedro@email.com"
+        );
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            participante.setEmail("   ");
+        });
+    }
+
+    @Test
+    void naoDevePermitirEmailSemArrobaNoSet() {
+        Participante participante = new Participante(
+            "007", "Lucas", "lucas@email.com"
+        );
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            participante.setEmail("lucasemail.com");
+        });
+    }
+
+
+// ==========================================
+// TESTES DO atualizarDados()
+// ==========================================
+
+@Test
+void deveAtualizarTodosOsDadosDoParticipante() {
+    Participante participante = new Participante(
+        "001", "João", "joao@email.com"
+    );
+
+    participante.atualizarDados(
+        "002", "Carlos", "carlos@email.com"
+    );
+
+    assertEquals("002", participante.getCodigo());
+    assertEquals("Carlos", participante.getNome());
+    assertEquals("carlos@email.com", participante.getEmail());
+}
+
+@Test
+void devePermitirAtualizarDadosComNomeCompleto() {
+    Participante participante = new Participante(
+        "001", "João", "joao@email.com"
+    );
+
+    participante.atualizarDados(
+        "002", "Carlos Eduardo Silva", "carlos@email.com"
+    );
+
+    assertEquals("Carlos Eduardo Silva", participante.getNome());
+}
+
+@Test
+void naoDeveAtualizarDadosComCodigoNulo() {
+    Participante participante = new Participante(
+        "001", "João", "joao@email.com"
+    );
+
+    assertThrows(IllegalArgumentException.class, () -> {
+        participante.atualizarDados(
+            null, "Carlos", "carlos@email.com"
+        );
+    });
+}
+
+@Test
+void naoDeveAtualizarDadosComNomeNulo() {
+    Participante participante = new Participante(
+        "001", "João", "joao@email.com"
+    );
+
+    assertThrows(IllegalArgumentException.class, () -> {
+        participante.atualizarDados(
+            "002", null, "carlos@email.com"
+        );
+    });
+}
+
+@Test
+void naoDeveAtualizarDadosComEmailInvalido() {
+    Participante participante = new Participante(
+        "001", "João", "joao@email.com"
+    );
+
+    assertThrows(IllegalArgumentException.class, () -> {
+        participante.atualizarDados(
+            "002", "Carlos", "emailinvalido"
+        );
+    });
+}
+
+@Test
+void naoDeveAlterarNenhumDadoQuandoAtualizacaoForInvalida() {
+    Participante participante = new Participante(
+        "001", "João", "joao@email.com"
+    );
+
+    assertThrows(IllegalArgumentException.class, () -> {
+        participante.atualizarDados(
+            "002", "Carlos", "emailinvalido"
+        );
+    });
+
+    assertEquals("001", participante.getCodigo());
+    assertEquals("João", participante.getNome());
+    assertEquals("joao@email.com", participante.getEmail());
 }
 
 }
