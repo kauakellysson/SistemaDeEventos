@@ -108,4 +108,17 @@ class EventoTest {
             "musica-03", "Festival de Jazz", data, "Mineirão", precoNegativo
         ));
     }
+
+    @Test
+    void deveAtualizarPrecoDoEvento() {
+        Evento evento = new Evento(
+            "musica-01", "Festival Neon Lights 2026",
+            LocalDateTime.parse("2026-12-05T20:00"), "Mineirão", new BigDecimal("120.00")
+        );
+        BigDecimal novoPreco = new BigDecimal("90.00");
+
+        evento.alterarPreco(novoPreco);
+
+        assertEquals(0, novoPreco.compareTo(evento.getPreco()));
+    }
 }
