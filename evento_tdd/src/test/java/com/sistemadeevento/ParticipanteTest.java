@@ -1,23 +1,39 @@
 
 package com.sistemadeevento;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
 class ParticipanteTest {
 
     // ==========================================
-    // 1. TESTES DO CONSTRUTOR
+    // TESTES DO getCodigo()
     // ==========================================
 
     @Test
-    void deveCriarParticipanteComDadosValidos() {
+    void deveRetornarCodigoCorretamente() {
         Participante participante = new Participante(
             "001", "João", "joao@email.com"
         );
 
         assertEquals("001", participante.getCodigo());
-        assertEquals("João", participante.getNome());
-        assertEquals("joao@email.com", participante.getEmail());
+    }
+
+    @Test
+    void deveRetornarCodigoAlfanumerico() {
+        Participante participante = new Participante(
+            "ABC123", "João", "joao@email.com"
+        );
+
+        assertEquals("ABC123", participante.getCodigo());
+    }
+
+    @Test
+    void devePreservarZerosIniciaisDoCodigo() {
+        Participante participante = new Participante(
+            "0001", "João", "joao@email.com"
+        );
+
+        assertEquals("0001", participante.getCodigo());
     }
 }
