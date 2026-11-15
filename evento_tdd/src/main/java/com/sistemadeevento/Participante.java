@@ -26,8 +26,12 @@ public class Participante {
         return email;
     }
     public void setNome(String nome) {
-    this.nome = nome;
+    if (nome == null || nome.trim().isEmpty()) {
+        throw new IllegalArgumentException("Nome inválido.");
     }
+
+    this.nome = nome;
+}
     
     // Setter do código
     public void setCodigo(String codigo) {
