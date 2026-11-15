@@ -133,4 +133,17 @@ class EventoTest {
 
         assertEquals(0, BigDecimal.ZERO.compareTo(evento.getPreco()));
     }
+
+    @Test
+    void deveManterPrecoOriginalAoRecusarAlteracaoNegativa() {
+        BigDecimal precoOriginal = new BigDecimal("120.00");
+        Evento evento = new Evento(
+            "musica-01", "Festival Neon Lights 2026",
+            LocalDateTime.parse("2026-12-05T20:00"), "Mineirão", precoOriginal
+        );
+
+        assertThrows(IllegalArgumentException.class,
+            () -> evento.alterarPreco(new BigDecimal("-0.01")));
+        assertEquals(0, precoOriginal.compareTo(evento.getPreco()));
+    }
 }
