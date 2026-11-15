@@ -121,4 +121,16 @@ class EventoTest {
 
         assertEquals(0, novoPreco.compareTo(evento.getPreco()));
     }
+
+    @Test
+    void devePermitirTornarEventoGratuito() {
+        Evento evento = new Evento(
+            "musica-01", "Festival Neon Lights 2026",
+            LocalDateTime.parse("2026-12-05T20:00"), "Mineirão", new BigDecimal("120.00")
+        );
+
+        evento.alterarPreco(BigDecimal.ZERO);
+
+        assertEquals(0, BigDecimal.ZERO.compareTo(evento.getPreco()));
+    }
 }
