@@ -57,6 +57,9 @@ public final class Evento {
      * @param novoPreco novo preço do evento
      */
     public void alterarPreco(BigDecimal novoPreco) {
+        if (novoPreco.signum() < 0) {
+            throw new IllegalArgumentException("O preço do evento deve ser zero ou positivo.");
+        }
         this.preco = novoPreco;
     }
 }
