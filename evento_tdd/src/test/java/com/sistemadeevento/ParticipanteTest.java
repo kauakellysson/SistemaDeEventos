@@ -68,4 +68,36 @@ class ParticipanteTest {
         assertEquals("José Antônio", participante.getNome());
     }
 
+    // ==========================================
+    // TESTES DO getEmail()
+    // ==========================================
+
+    @Test
+    void deveRetornarEmailCorretamente() {
+        Participante participante = new Participante(
+            "001", "João", "joao@email.com"
+        );
+
+        assertEquals("joao@email.com", participante.getEmail());
+    }
+
+    @Test
+    void deveRetornarEmailComDominioDiferente() {
+        Participante participante = new Participante(
+            "002", "Maria", "maria@gmail.com"
+        );
+
+        assertEquals("maria@gmail.com", participante.getEmail());
+    }
+
+    @Test
+    void devePreservarCaracteresEspeciaisNoEmail() {
+        Participante participante = new Participante(
+            "003", "José", "jose.silva+evento@email.com"
+        );
+
+        assertEquals("jose.silva+evento@email.com", participante.getEmail());
+    }
+
+
 }
