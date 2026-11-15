@@ -66,4 +66,14 @@ class EventoTest {
         assertEquals("musica-01", primeiro.getCodigo());
         assertEquals("musica-02", segundo.getCodigo());
     }
+
+    @Test
+    void devePreservarZerosAEsquerdaNoCodigo() {
+        Evento evento = new Evento(
+            "001", "Festival de Jazz", LocalDateTime.parse("2026-12-05T20:00"),
+            "Mineirão", BigDecimal.ZERO
+        );
+
+        assertEquals("001", evento.getCodigo());
+    }
 }
