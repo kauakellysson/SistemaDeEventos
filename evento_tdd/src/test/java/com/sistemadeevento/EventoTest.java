@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import  org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /** Testes da classe Evento. */
 class EventoTest {
@@ -75,5 +76,74 @@ class EventoTest {
         );
 
         assertEquals("001", evento.getCodigo());
+    }
+
+    @Test
+    void deveRetornarPrecoInformadoAoCriarEvento() {
+        BigDecimal preco = new BigDecimal("120.00");
+        Evento evento = new Evento(
+            "musica-01", "Festival Neon Lights 2026",
+            LocalDateTime.parse("2026-12-05T20:00"), "Mineirão", preco
+        );
+
+        assertEquals(0, preco.compareTo(evento.getPreco()));
+    }
+
+    @Test
+    void deveRetornarPrecoZeroParaEventoGratuito() {
+        Evento evento = new Evento(
+            "musica-02", "Festival de Jazz", LocalDateTime.parse("2026-12-05T20:00"),
+            "Mineirão", BigDecimal.ZERO
+        );
+
+        assertEquals(0, BigDecimal.ZERO.compareTo(evento.getPreco()));
+    }
+
+    @Test
+    void deveRecusarPrecoNegativoAoCriarEvento() {
+        BigDecimal precoNegativo = new BigDecimal("-0.01");
+        LocalDateTime data = LocalDateTime.parse("2026-12-05T20:00");
+
+        assertThrows(IllegalArgumentException.class, () -> new Evento(
+            "musica-03", "Festival de Jazz", data, "Mineirão", precoNegativo
+        ));
+    }
+
+    @Test
+    void deveAtualizarPrecoDoEvento() {
+        Evento evento = new Evento(
+            "musica-01", "Festival Neon Lights 2026",
+            LocalDateTime.parse("2026-12-05T20:00"), "Mineirão", new BigDecimal("120.00")
+        );
+        BigDecimal novoPreco = new BigDecimal("90.00");
+
+        evento.alterarPreco(novoPreco);
+
+        assertEquals(0, novoPreco.compareTo(evento.getPreco()));
+    }
+
+    @Test
+    void devePermitirTornarEventoGratuito() {
+        Evento evento = new Evento(
+            "musica-01", "Festival Neon Lights 2026",
+            LocalDateTime.parse("2026-12-05T20:00"), "Mineirão", new BigDecimal("120.00")
+        );
+
+        evento.alterarPreco(BigDecimal.ZERO);
+
+        assertEquals(0, BigDecimal.ZERO.compareTo(evento.getPreco()));
+    }
+
+    @Test
+    void deveManterPrecoOriginalAoRecusarAlteracaoNegativa() {
+        BigDecimal precoOriginal = new BigDecimal("120.00");
+        Evento evento = new Evento(
+            "musica-01", "Festival Neon Lights 2026",
+            LocalDateTime.parse("2026-12-05T20:00"), "Mineirão", precoOriginal
+        );
+
+        assertThrows(IllegalArgumentException.class,
+            () -> evento.alterarPreco(new BigDecimal("-0.01")));
+        assertEquals(0, precoOriginal.compareTo(evento.getPreco()));
     }
 }
