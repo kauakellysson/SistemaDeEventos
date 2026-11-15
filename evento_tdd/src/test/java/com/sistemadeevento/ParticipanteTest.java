@@ -1,14 +1,13 @@
-
 package com.sistemadeevento;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
-class ParticipanteTest {
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-    // ==========================================
-    // 1. TESTES DO CONSTRUTOR
-    // ==========================================
+/**
+ * Testes da classe Participante.
+ */
+class ParticipanteTest {
 
     @Test
     void deveCriarParticipanteComDadosValidos() {
