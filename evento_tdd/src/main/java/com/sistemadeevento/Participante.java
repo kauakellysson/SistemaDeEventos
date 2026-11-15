@@ -50,6 +50,26 @@ public class Participante {
 
         this.email = email;
     }
+    // Atualizar todos os dados do participante
+    public void atualizarDados(String codigo, String nome, String email) {
 
+        // Validação de todos os campos
+        if (codigo == null || codigo.trim().isEmpty()) {
+            throw new IllegalArgumentException("Código inválido.");
+        }
+
+        if (nome == null || nome.trim().isEmpty()) {
+            throw new IllegalArgumentException("Nome inválido.");
+        }
+
+        if (email == null || email.trim().isEmpty() || !email.contains("@")) {
+            throw new IllegalArgumentException("E-mail inválido.");
+        }
+
+        // Atualização dos dados após todas as validações
+        this.codigo = codigo;
+        this.nome = nome;
+        this.email = email;
+    }
 
 }
