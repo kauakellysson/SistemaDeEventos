@@ -38,4 +38,14 @@ public class Participante {
         this.codigo = codigo;
     }
 
+    // Setter do e-mail
+    public void setEmail(String email) {
+        if (email == null || email.trim().isEmpty() || !email.contains("@")) {
+            throw new IllegalArgumentException("E-mail inválido.");
+        }
+
+        this.email = email;
+    }
+
+
 }
