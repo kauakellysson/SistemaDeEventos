@@ -87,4 +87,14 @@ class EventoTest {
 
         assertEquals(0, preco.compareTo(evento.getPreco()));
     }
+
+    @Test
+    void deveRetornarPrecoZeroParaEventoGratuito() {
+        Evento evento = new Evento(
+            "musica-02", "Festival de Jazz", LocalDateTime.parse("2026-12-05T20:00"),
+            "Mineirão", BigDecimal.ZERO
+        );
+
+        assertEquals(0, BigDecimal.ZERO.compareTo(evento.getPreco()));
+    }
 }
