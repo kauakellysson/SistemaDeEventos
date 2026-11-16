@@ -1,6 +1,5 @@
-package com.sistemadeevento;
 
-import org.junit.jupiter.api.Test;
+package com.sistemadeevento;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -107,8 +106,8 @@ class ParticipanteTest {
     }
 
     // ==========================================
-    // TESTES DO setNome()
-    // ==========================================
+// TESTES DO setNome()
+// ==========================================
 
     @Test
     void deveAlterarNomeCorretamente() {
@@ -118,8 +117,7 @@ class ParticipanteTest {
 
         participante.setNome("Carlos");
 
-        assertEquals("Carlos", participante.getNome());
-    }
+    participante.setNome("Carlos");
 
     @Test
     void devePermitirAlterarNomeComSobrenome() {
@@ -127,21 +125,26 @@ class ParticipanteTest {
             "002", "Maria", "maria@email.com"
         );
 
-        participante.setNome("Maria Silva");
+@Test
+void devePermitirAlterarNomeComSobrenome() {
+    Participante participante = new Participante(
+        "002", "Maria", "maria@email.com"
+    );
 
-        assertEquals("Maria Silva", participante.getNome());
-    }
+    participante.setNome("Maria Silva");
 
+    assertEquals("Maria Silva", participante.getNome());
+}   
     @Test
     void devePreservarAcentosNoNomeAoAlterar() {
         Participante participante = new Participante(
             "003", "Joao", "joao@email.com"
         );
 
-        participante.setNome("José Antônio");
+    participante.setNome("José Antônio");
 
-        assertEquals("José Antônio", participante.getNome());
-    }
+    assertEquals("José Antônio", participante.getNome());
+}
 
     @Test
     void naoDevePermitirNomeNulo() {
@@ -149,10 +152,10 @@ class ParticipanteTest {
             "004", "Maria", "maria@email.com"
         );
 
-        assertThrows(IllegalArgumentException.class, () -> {
-            participante.setNome(null);
-        });
-    }
+    assertThrows(IllegalArgumentException.class, () -> {
+        participante.setNome(null);
+    });
+}
 
     @Test
     void naoDevePermitirNomeVazio() {
@@ -160,10 +163,10 @@ class ParticipanteTest {
             "005", "Maria", "maria@email.com"
         );
 
-        assertThrows(IllegalArgumentException.class, () -> {
-            participante.setNome("");
-        });
-    }
+    assertThrows(IllegalArgumentException.class, () -> {
+        participante.setNome("");
+    });
+}
 
     @Test
     void naoDevePermitirNomeComApenasEspacos() {
@@ -330,9 +333,6 @@ class ParticipanteTest {
         });
     }
 
-    // ==========================================
-    // TESTES DO atualizarDados()
-    // ==========================================
 
     @Test
     void deveAtualizarTodosOsDadosDoParticipante() {
@@ -344,10 +344,9 @@ class ParticipanteTest {
             "002", "Carlos", "carlos@email.com"
         );
 
-        assertEquals("002", participante.getCodigo());
-        assertEquals("Carlos", participante.getNome());
-        assertEquals("carlos@email.com", participante.getEmail());
-    }
+    participante.atualizarDados(
+        "002", "Carlos", "carlos@email.com"
+    );
 
     @Test
     void devePermitirAtualizarDadosComNomeCompleto() {
@@ -359,8 +358,9 @@ class ParticipanteTest {
             "002", "Carlos Eduardo Silva", "carlos@email.com"
         );
 
-        assertEquals("Carlos Eduardo Silva", participante.getNome());
-    }
+    participante.atualizarDados(
+        "002", "Carlos Eduardo Silva", "carlos@email.com"
+    );
 
     @Test
     void naoDeveAtualizarDadosComCodigoNulo() {
@@ -418,3 +418,6 @@ class ParticipanteTest {
         assertEquals("joao@email.com", participante.getEmail());
     }
 }
+
+}
+
