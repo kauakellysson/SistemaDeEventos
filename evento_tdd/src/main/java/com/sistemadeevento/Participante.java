@@ -1,118 +1,81 @@
+
 package com.sistemadeevento;
 
-/**
- * Representa um participante do sistema de eventos.
- */
 public class Participante {
 
     private String codigo;
     private String nome;
     private String email;
 
-    /**
-     * Cria um participante.
-     *
-     * @param codigo código do participante
-     * @param nome nome do participante
-     * @param email e-mail do participante
-     */
+    // Construtor
     public Participante(String codigo, String nome, String email) {
         this.codigo = codigo;
         this.nome = nome;
         this.email = email;
     }
 
-    /**
-     * Retorna o código.
-     *
-     * @return código do participante
-     */
+    // Getter do código
     public String getCodigo() {
         return codigo;
     }
 
-    /**
-     * Retorna o nome.
-     *
-     * @return nome do participante
-     */
+    // Getter do nome
     public String getNome() {
         return nome;
     }
 
-    /**
-     * Retorna o e-mail.
-     *
-     * @return e-mail do participante
-     */
+    // Getter do e-mail
     public String getEmail() {
         return email;
     }
 
-    /**
-     * Altera o nome após a validação.
-     *
-     * @param novoNome novo nome
-     */
-    public void setNome(String novoNome) {
-        validarNome(novoNome);
-        this.nome = novoNome;
+    // Setter do nome
+    public void setNome(String nome) {
+        validarNome(nome);
+        this.nome = nome;
     }
 
-    /**
-     * Altera o código após a validação.
-     *
-     * @param novoCodigo novo código
-     */
-    public void setCodigo(String novoCodigo) {
-        validarCodigo(novoCodigo);
-        this.codigo = novoCodigo;
+    // Setter do código
+    public void setCodigo(String codigo) {
+        validarCodigo(codigo);
+        this.codigo = codigo;
     }
 
-    /**
-     * Altera o e-mail após a validação.
-     *
-     * @param novoEmail novo e-mail
-     */
-    public void setEmail(String novoEmail) {
-        validarEmail(novoEmail);
-        this.email = novoEmail;
+    // Setter do e-mail
+    public void setEmail(String email) {
+        validarEmail(email);
+        this.email = email;
     }
 
-    /**
-     * Atualiza os dados após validar todos os valores.
-     *
-     * @param novoCodigo novo código
-     * @param novoNome novo nome
-     * @param novoEmail novo e-mail
-     */
-    public void atualizarDados(
-            String novoCodigo, String novoNome, String novoEmail) {
-        validarCodigo(novoCodigo);
-        validarNome(novoNome);
-        validarEmail(novoEmail);
+    // Atualizar todos os dados do participante
+    public void atualizarDados(String codigo, String nome, String email) {
 
-        this.codigo = novoCodigo;
-        this.nome = novoNome;
-        this.email = novoEmail;
+        validarCodigo(codigo);
+        validarNome(nome);
+        validarEmail(email);
+
+        this.codigo = codigo;
+        this.nome = nome;
+        this.email = email;
     }
 
-    private void validarCodigo(String codigoInformado) {
-        if (codigoInformado == null || codigoInformado.trim().isEmpty()) {
+    // Validação do código
+    private void validarCodigo(String codigo) {
+        if (codigo == null || codigo.trim().isEmpty()) {
             throw new IllegalArgumentException("Código inválido.");
         }
     }
 
-    private void validarNome(String nomeInformado) {
-        if (nomeInformado == null || nomeInformado.trim().isEmpty()) {
+    // Validação do nome
+    private void validarNome(String nome) {
+        if (nome == null || nome.trim().isEmpty()) {
             throw new IllegalArgumentException("Nome inválido.");
         }
     }
 
-    private void validarEmail(String emailInformado) {
-        if (emailInformado == null
-                || emailInformado.trim().isEmpty()
-                || !emailInformado.contains("@")) {
+    // Validação do e-mail
+    private void validarEmail(String email) {
+        if (email == null || email.trim().isEmpty() || !email.contains("@")) {
             throw new IllegalArgumentException("E-mail inválido.");
         }
     }
