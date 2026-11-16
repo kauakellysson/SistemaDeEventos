@@ -1,5 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle version="8.45.1">
+<file name="/workspaces/SistemaDeEventos/evento_tdd/src/main/java/com/sistemadeevento/App.java">
+</file>
+<file name="/workspaces/SistemaDeEventos/evento_tdd/src/main/java/com/sistemadeevento/Participante.java">
+<error line="1" severity="error" message="File does not end with a newline." source="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck"/>
+</file>
+<file name="/workspaces/SistemaDeEventos/evento_tdd/src/main/java/com/sistemadeevento/Evento.java">
+</file>
 <file name="/workspaces/SistemaDeEventos/evento_tdd/src/test/java/com/sistemadeevento/ParticipanteTest.java">
+<error line="1" severity="error" message="File does not end with a newline." source="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck"/>
+<error line="1" column="1" severity="error" message="Missing package declaration." source="com.puppycrawl.tools.checkstyle.checks.coding.PackageDeclarationCheck"/>
+<error line="3" column="1" severity="error" message="Wrong order for &apos;org.junit.jupiter.api.Test&apos; import." source="com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck"/>
+<error line="5" column="1" severity="error" message="Missing a Javadoc comment." source="com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocTypeCheck"/>
+</file>
+<file name="/workspaces/SistemaDeEventos/evento_tdd/src/test/java/com/sistemadeevento/EventoTest.java">
+</file>
+<file name="/workspaces/SistemaDeEventos/evento_tdd/src/test/java/com/sistemadeevento/AppTest.java">
 </file>
 </checkstyle>
