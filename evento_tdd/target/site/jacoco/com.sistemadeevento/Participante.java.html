@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Participante.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">evento_tdd</a> &gt; <a href="index.source.html" class="el_package">com.sistemadeevento</a> &gt; <span class="el_source">Participante.java</span></div><h1>Participante.java</h1><pre class="source lang-java linenums">
+package com.sistemadeevento;
+
+/**
+ * Representa um participante de um evento.
+ * Armazena código, nome e e-mail do participante.
+ */
+public class Participante {
+
+    private String codigo;
+    private String nome;
+    private String email;
+
+    /**
+     * Cria um participante com seus dados iniciais.
+     *
+     * @param novoCodigo código do participante
+     * @param novoNome nome do participante
+     * @param novoEmail e-mail do participante
+     */
+    public Participante(
+<span class="fc" id="L22">            String novoCodigo, String novoNome, String novoEmail) {</span>
+<span class="fc" id="L23">        this.codigo = novoCodigo;</span>
+<span class="fc" id="L24">        this.nome = novoNome;</span>
+<span class="fc" id="L25">        this.email = novoEmail;</span>
+<span class="fc" id="L26">    }</span>
+
+    /**
+     * Retorna o código do participante.
+     *
+     * @return código do participante
+     */
+    public String getCodigo() {
+<span class="fc" id="L34">        return codigo;</span>
+    }
+
+    /**
+     * Retorna o nome do participante.
+     *
+     * @return nome do participante
+     */
+    public String getNome() {
+<span class="fc" id="L43">        return nome;</span>
+    }
+
+    /**
+     * Retorna o e-mail do participante.
+     *
+     * @return e-mail do participante
+     */
+    public String getEmail() {
+<span class="fc" id="L52">        return email;</span>
+    }
+
+    /**
+     * Altera o nome do participante.
+     *
+     * @param novoNome novo nome do participante
+     */
+    public void setNome(String novoNome) {
+<span class="fc" id="L61">        validarNome(novoNome);</span>
+<span class="fc" id="L62">        this.nome = novoNome;</span>
+<span class="fc" id="L63">    }</span>
+
+    /**
+     * Altera o código do participante.
+     *
+     * @param novoCodigo novo código do participante
+     */
+    public void setCodigo(String novoCodigo) {
+<span class="fc" id="L71">        validarCodigo(novoCodigo);</span>
+<span class="fc" id="L72">        this.codigo = novoCodigo;</span>
+<span class="fc" id="L73">    }</span>
+
+    /**
+     * Altera o e-mail do participante.
+     *
+     * @param novoEmail novo e-mail do participante
+     */
+    public void setEmail(String novoEmail) {
+<span class="fc" id="L81">        validarEmail(novoEmail);</span>
+<span class="fc" id="L82">        this.email = novoEmail;</span>
+<span class="fc" id="L83">    }</span>
+
+    /**
+     * Atualiza todos os dados do participante.
+     *
+     * @param novoCodigo novo código do participante
+     * @param novoNome novo nome do participante
+     * @param novoEmail novo e-mail do participante
+     */
+    public void atualizarDados(
+            String novoCodigo, String novoNome, String novoEmail) {
+
+<span class="fc" id="L95">        validarCodigo(novoCodigo);</span>
+<span class="fc" id="L96">        validarNome(novoNome);</span>
+<span class="fc" id="L97">        validarEmail(novoEmail);</span>
+
+<span class="fc" id="L99">        this.codigo = novoCodigo;</span>
+<span class="fc" id="L100">        this.nome = novoNome;</span>
+<span class="fc" id="L101">        this.email = novoEmail;</span>
+<span class="fc" id="L102">    }</span>
+
+    /**
+     * Valida o código informado.
+     *
+     * @param valorCodigo código que será validado
+     * @throws IllegalArgumentException se o código for inválido
+     */
+    private void validarCodigo(String valorCodigo) {
+<span class="fc bfc" id="L111" title="All 4 branches covered.">        if (valorCodigo == null || valorCodigo.trim().isEmpty()) {</span>
+<span class="fc" id="L112">            throw new IllegalArgumentException(&quot;Código inválido.&quot;);</span>
+        }
+<span class="fc" id="L114">    }</span>
+
+    /**
+     * Valida o nome informado.
+     *
+     * @param valorNome nome que será validado
+     * @throws IllegalArgumentException se o nome for inválido
+     */
+    private void validarNome(String valorNome) {
+<span class="fc bfc" id="L123" title="All 4 branches covered.">        if (valorNome == null || valorNome.trim().isEmpty()) {</span>
+<span class="fc" id="L124">            throw new IllegalArgumentException(&quot;Nome inválido.&quot;);</span>
+        }
+<span class="fc" id="L126">    }</span>
+
+    /**
+     * Valida o e-mail informado.
+     *
+     * @param valorEmail e-mail que será validado
+     * @throws IllegalArgumentException se o e-mail for inválido
+     */
+    private void validarEmail(String valorEmail) {
+<span class="fc bfc" id="L135" title="All 2 branches covered.">        if (valorEmail == null</span>
+<span class="fc bfc" id="L136" title="All 2 branches covered.">                || valorEmail.trim().isEmpty()</span>
+<span class="fc bfc" id="L137" title="All 2 branches covered.">                || !valorEmail.contains(&quot;@&quot;)) {</span>
+<span class="fc" id="L138">            throw new IllegalArgumentException(&quot;E-mail inválido.&quot;);</span>
+        }
+<span class="fc" id="L140">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>
