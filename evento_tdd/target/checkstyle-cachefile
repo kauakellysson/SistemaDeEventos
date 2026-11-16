@@ -1,7 +1,11 @@
-#Sun Nov 15 23:09:59 UTC 2026
+#Mon Nov 16 01:26:38 UTC 2026
 /workspaces/SistemaDeEventos/evento_tdd/src/main/java/com/sistemadeevento/App.java=1794781819395
+/workspaces/SistemaDeEventos/evento_tdd/src/main/java/com/sistemadeevento/CadastroDeParticipantes.java=1794791910512
 /workspaces/SistemaDeEventos/evento_tdd/src/main/java/com/sistemadeevento/Evento.java=1794781819395
+/workspaces/SistemaDeEventos/evento_tdd/src/main/java/com/sistemadeevento/Participante.java=1794791993158
 /workspaces/SistemaDeEventos/evento_tdd/src/test/java/com/sistemadeevento/AppTest.java=1794781819395
+/workspaces/SistemaDeEventos/evento_tdd/src/test/java/com/sistemadeevento/CadastroDeParticipantesTest.java=1794791910513
 /workspaces/SistemaDeEventos/evento_tdd/src/test/java/com/sistemadeevento/EventoTest.java=1794781819395
+/workspaces/SistemaDeEventos/evento_tdd/src/test/java/com/sistemadeevento/ParticipanteTest.java=1794792339891
 configuration*?=B48E55703F1224968333D463ACC839D501FAB1BA
 module-resource*?\:checkstyle/suppressions.xml=5391E2A1F6874D18C319238A5BFA6EEEC89A7009

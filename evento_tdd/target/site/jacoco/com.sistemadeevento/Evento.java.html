@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Evento.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">evento_tdd</a> &gt; <a href="index.source.html" class="el_package">com.sistemadeevento</a> &gt; <span class="el_source">Evento.java</span></div><h1>Evento.java</h1><pre class="source lang-java linenums">package com.sistemadeevento;
+
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+
+/** Representa um evento do sistema. */
+public final class Evento {
+
+    private final String nome;
+    private final String codigo;
+    private BigDecimal preco;
+
+    /**
+     * Cria um evento com os dados informados.
+     * @param codigo código do evento
+     * @param nomeInformado nome do evento
+     * @param data data e horário do evento
+     * @param local local do evento
+     * @param preco preço do evento
+     */
+    public Evento(String codigo, String nomeInformado, LocalDateTime data,
+<span class="fc" id="L22">                  String local, BigDecimal preco) {</span>
+<span class="fc" id="L23">        this.nome = nomeInformado;</span>
+<span class="fc" id="L24">        this.codigo = codigo;</span>
+<span class="fc" id="L25">        alterarPreco(preco);</span>
+<span class="fc" id="L26">    }</span>
+
+    /**
+     * Retorna o nome do evento.
+     * @return nome informado na criação
+     */
+    public String getNome() {
+<span class="fc" id="L33">        return nome;</span>
+    }
+
+    /**
+    * Retorna o código do evento.
+    * @return código informado na criação
+    */
+    public String getCodigo() {
+<span class="fc" id="L41">        return codigo;</span>
+    }
+
+    /**
+     * Retorna o preço do evento.
+     * @return preço do evento
+     */
+    public BigDecimal getPreco() {
+<span class="fc" id="L49">        return preco;</span>
+    }
+
+    /**
+     * Altera o preço do evento.
+     * @param novoPreco novo preço do evento
+     */
+    public void alterarPreco(BigDecimal novoPreco) {
+<span class="fc bfc" id="L57" title="All 2 branches covered.">        if (novoPreco.signum() &lt; 0) {</span>
+<span class="fc" id="L58">            throw new IllegalArgumentException(&quot;O preço do evento deve ser zero ou positivo.&quot;);</span>
+        }
+<span class="fc" id="L60">        this.preco = novoPreco;</span>
+<span class="fc" id="L61">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

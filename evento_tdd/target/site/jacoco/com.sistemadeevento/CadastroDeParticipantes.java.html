@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CadastroDeParticipantes.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">evento_tdd</a> &gt; <a href="index.source.html" class="el_package">com.sistemadeevento</a> &gt; <span class="el_source">CadastroDeParticipantes.java</span></div><h1>CadastroDeParticipantes.java</h1><pre class="source lang-java linenums">package com.sistemadeevento;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+/**
+ * Mantém o cadastro de participantes.
+ */
+<span class="fc" id="L11">public class CadastroDeParticipantes {</span>
+
+<span class="fc" id="L13">    private final Map&lt;String, Participante&gt; participantes = new HashMap&lt;&gt;();</span>
+
+    /**
+     * Cadastra um participante sem permitir códigos duplicados.
+     *
+     * @param participante participante que será cadastrado
+     * @throws IllegalArgumentException se for nulo ou o código já existir
+     */
+    public void cadastrar(Participante participante) {
+<span class="fc bfc" id="L22" title="All 2 branches covered.">        if (participante == null) {</span>
+<span class="fc" id="L23">            throw new IllegalArgumentException(</span>
+                    &quot;O participante não pode ser nulo.&quot;);
+        }
+
+<span class="fc" id="L27">        String codigo = participante.getCodigo();</span>
+
+<span class="fc bfc" id="L29" title="All 2 branches covered.">        if (participantes.containsKey(codigo)) {</span>
+<span class="fc" id="L30">            throw new IllegalArgumentException(</span>
+                    &quot;Já existe um participante com esse código.&quot;);
+        }
+
+<span class="fc" id="L34">        participantes.put(codigo, participante);</span>
+<span class="fc" id="L35">    }</span>
+
+    /**
+     * Busca um participante pelo código.
+     *
+     * @param codigo código procurado
+     * @return participante encontrado ou null se não estiver cadastrado
+     */
+    public Participante buscarPorCodigo(String codigo) {
+<span class="fc" id="L44">        return participantes.get(codigo);</span>
+    }
+
+    /**
+     * Retorna uma cópia da lista de participantes cadastrados.
+     *
+     * @return lista dos participantes, sem ordem garantida
+     */
+    public List&lt;Participante&gt; listar() {
+<span class="fc" id="L53">        return new ArrayList&lt;&gt;(participantes.values());</span>
+    }
+
+    /**
+     * Atualiza nome e e-mail de um participante cadastrado.
+     *
+     * @param codigo    código do participante procurado
+     * @param novoNome  novo nome
+     * @param novoEmail novo e-mail
+     * @throws IllegalArgumentException se não existir ou os dados forem inválidos
+     */
+    public void atualizar(String codigo, String novoNome, String novoEmail) {
+<span class="fc" id="L65">        Participante participante = participantes.get(codigo);</span>
+
+<span class="fc bfc" id="L67" title="All 2 branches covered.">        if (participante == null) {</span>
+<span class="fc" id="L68">            throw new IllegalArgumentException(</span>
+                    &quot;Participante não encontrado.&quot;);
+        }
+
+<span class="fc" id="L72">        participante.atualizarDados(codigo, novoNome, novoEmail);</span>
+<span class="fc" id="L73">    }</span>
+
+    /**
+     * Exclui um participante cadastrado pelo código.
+     *
+     * @param codigo código do participante
+     * @throws IllegalArgumentException se o participante não existir
+     */
+    public void excluir(String codigo) {
+<span class="fc bfc" id="L82" title="All 2 branches covered.">        if (participantes.remove(codigo) == null) {</span>
+<span class="fc" id="L83">            throw new IllegalArgumentException(</span>
+                    &quot;Participante não encontrado.&quot;);
+        }
+<span class="fc" id="L86">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>
